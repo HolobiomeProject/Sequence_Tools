@@ -56,7 +56,7 @@ def zip_nt():
                     #add 1 to k because we are no longer on the first line
                     k+=1
                 #all the other lines after the first
-                else: 
+                else:
                     out_file.write(j)
             #always close a file when you are done
             file.close()
@@ -81,8 +81,3 @@ B1 = Button(root, text = "Zip Files", command = zip_nt)
 B1.pack()
 #the main loop for the window we created
 root.mainloop()
-
-
-
-
-
