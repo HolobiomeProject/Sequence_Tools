@@ -56,9 +56,11 @@ def blast():
     #blast names (list of lists)
     bac = []
     #id in ncbi (list of lists)
-    id = []
+    ids = []
     #percent id (list of lists)
     pct = []
+    #count for good measure
+    count = 0
     #Go through the file and parse the sequences into a list
     with open(fasta, "r") as handle:
         for record in SeqIO.parse(handle, "fasta"):
@@ -67,7 +69,15 @@ def blast():
     #change directory to save folder
     os.chdir(save_folder)
     #main loop
+
     for j in range(0,len(seqs)):
+        #count up to see where we are at
+        count += 1
+        print(count)
+        #if too many dashes start where less dashes are
+        if seqs[j][0:60]=='------------------------------------------------------------':
+            seqs[j] = seqs[j][60:]
+            print(seqs[j])
         #list of names for this bug of interest
         names = []
         #list of ids for this bug of interest
@@ -111,10 +121,9 @@ def blast():
         #add list of names to the list of lists of names
         bac.append(names)
         #add list of idds to the list of idds
-        id.append(idd)
+        ids.append(idd)
         #delete the xml because we do not need it
         os.remove(E1.get()+'.xml')
-
     #Combine all list of lists into final form
     # print(id)
     # print (bac)
@@ -125,7 +134,7 @@ def blast():
         for j in range(0, len(bac[i])):
             short.append(bac[i][j])
             short.append(pct[i][j])
-            short.append(id[i][j])
+            short.append(ids[i][j])
         flat.append(short)
     #add the old names to it
     final = []
@@ -133,8 +142,58 @@ def blast():
         k = [old_names[i]]+flat[i]
         final.append(k)
     final_df = pd.DataFrame(final)
-    final_df = final_df.iloc[:,0:31]
-    final_df.columns = ['Holobiome_Name', 'Bacteria Match 1', 'Percent ID 1', 'NCBI ID 1','Bacteria Match 2', 'Percent ID 2', 'NCBI ID 2','Bacteria Match 3', 'Percent ID 3', 'NCBI ID 3','Bacteria Match 4', 'Percent ID 4', 'NCBI ID 4','Bacteria Match 5', 'Percent ID 5', 'NCBI ID 5','Bacteria Match 6', 'Percent ID 6', 'NCBI ID 6','Bacteria Match 7', 'Percent ID 7', 'NCBI ID 7','Bacteria Match 8', 'Percent ID 8', 'NCBI ID 8','Bacteria Match 9', 'Percent ID 9', 'NCBI ID 9','Bacteria Match 10','Percent ID 10', 'NCBI ID 10']
+    final_df = final_df.iloc[:,0:151]
+    final_df.to_csv("tryal.csv")
+    final_df.columns = ['Holobiome_Name','Bacteria Match 1', 'Percent ID 1', 'NCBI ID 1',
+                                            'Bacteria Match 2', 'Percent ID 2', 'NCBI ID 2',
+                                            'Bacteria Match 3', 'Percent ID 3', 'NCBI ID 3',
+                                            'Bacteria Match 4', 'Percent ID 4', 'NCBI ID 4',
+                                            'Bacteria Match 5', 'Percent ID 5', 'NCBI ID 5',
+                                            'Bacteria Match 6', 'Percent ID 6', 'NCBI ID 6',
+                                            'Bacteria Match 7', 'Percent ID 7', 'NCBI ID 7',
+                                            'Bacteria Match 8', 'Percent ID 8', 'NCBI ID 8',
+                                            'Bacteria Match 9', 'Percent ID 9', 'NCBI ID 9',
+                                            'Bacteria Match 10','Percent ID 10', 'NCBI ID 10',
+                                            'Bacteria Match 11', 'Percent ID 11', 'NCBI ID 11',
+                                            'Bacteria Match 12', 'Percent ID 12', 'NCBI ID 12',
+                                            'Bacteria Match 13', 'Percent ID 13', 'NCBI ID 13',
+                                            'Bacteria Match 14', 'Percent ID 14', 'NCBI ID 14',
+                                            'Bacteria Match 15', 'Percent ID 15', 'NCBI ID 15',
+                                            'Bacteria Match 16', 'Percent ID 16', 'NCBI ID 16',
+                                            'Bacteria Match 17', 'Percent ID 17', 'NCBI ID 17',
+                                            'Bacteria Match 18', 'Percent ID 18', 'NCBI ID 18',
+                                            'Bacteria Match 19', 'Percent ID 19', 'NCBI ID 19',
+                                            'Bacteria Match 20','Percent ID 20', 'NCBI ID 20',
+                                            'Bacteria Match 21', 'Percent ID 21', 'NCBI ID 21',
+                                            'Bacteria Match 22', 'Percent ID 22', 'NCBI ID 22',
+                                            'Bacteria Match 23', 'Percent ID 23', 'NCBI ID 23',
+                                            'Bacteria Match 24', 'Percent ID 24', 'NCBI ID 24',
+                                            'Bacteria Match 25', 'Percent ID 25', 'NCBI ID 25',
+                                            'Bacteria Match 26', 'Percent ID 26', 'NCBI ID 26',
+                                            'Bacteria Match 27', 'Percent ID 27', 'NCBI ID 27',
+                                            'Bacteria Match 28', 'Percent ID 28', 'NCBI ID 28',
+                                            'Bacteria Match 29', 'Percent ID 29', 'NCBI ID 29',
+                                            'Bacteria Match 30','Percent ID 30', 'NCBI ID 30',
+                                            'Bacteria Match 31', 'Percent ID 31', 'NCBI ID 31',
+                                            'Bacteria Match 32', 'Percent ID 32', 'NCBI ID 32',
+                                            'Bacteria Match 33', 'Percent ID 33', 'NCBI ID 33',
+                                            'Bacteria Match 34', 'Percent ID 34', 'NCBI ID 34',
+                                            'Bacteria Match 35', 'Percent ID 35', 'NCBI ID 35',
+                                            'Bacteria Match 36', 'Percent ID 36', 'NCBI ID 36',
+                                            'Bacteria Match 37', 'Percent ID 37', 'NCBI ID 37',
+                                            'Bacteria Match 38', 'Percent ID 38', 'NCBI ID 38',
+                                            'Bacteria Match 39', 'Percent ID 39', 'NCBI ID 39',
+                                            'Bacteria Match 40','Percent ID 40', 'NCBI ID 40',
+                                            'Bacteria Match 41', 'Percent ID 41', 'NCBI ID 41',
+                                            'Bacteria Match 42', 'Percent ID 42', 'NCBI ID 42',
+                                            'Bacteria Match 43', 'Percent ID 43', 'NCBI ID 43',
+                                            'Bacteria Match 44', 'Percent ID 44', 'NCBI ID 44',
+                                            'Bacteria Match 45', 'Percent ID 45', 'NCBI ID 45',
+                                            'Bacteria Match 46', 'Percent ID 46', 'NCBI ID 46',
+                                            'Bacteria Match 47', 'Percent ID 47', 'NCBI ID 47',
+                                            'Bacteria Match 48', 'Percent ID 48', 'NCBI ID 48',
+                                            'Bacteria Match 49', 'Percent ID 49', 'NCBI ID 49',
+                                            'Bacteria Match 50','Percent ID 50', 'NCBI ID 50',]
     final_df.to_csv(E1.get()+'.csv',index = False)
     #final_df.to_csv(E1.get()+'.csv',index = False)
 ###################################################
