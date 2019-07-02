@@ -1,12 +1,12 @@
->Plate_1_HB-101
+>HB-101
 atcgcatatccccagatactatcgcatatccccagatact
 atcgcatatccccagatactatcgcatatccccagatact
 atcgcatatccccagatactatcgcatatccccagatact
->Plate_1_HB-102
+>HB-102
 catgcatatccccagatactatcgcatatccccagatact
 atcgcatatccccagatactatcgcatatccccagatact
 atcgcatatccccagatactatcgcatatccccagatact
->Plate_1_HB-103
+>HB-103
 gagtgcatatccccagatactatcgcatatccccagatact
 atcgcatatccccagatactatcgcatatccccagatact
 atcgcatatccccagatactatcgcatatccccagatact
